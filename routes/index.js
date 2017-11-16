@@ -43,18 +43,20 @@ function querytabdata(data, tabtopic){
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var tab_data0 = { name: ['default'], category: ['default'] };
   var tab_data1 = { name: ['default'], category: ['default'] };
   var tab_data2 = { name: ['default'], category: ['default'] };
-  var tab_data3 = { name: ['default'], category: ['default'] };
   var tabtopic = ['mobile', 'restaurant', 'people'];
-  querytabdata(tab_data1,tabtopic[0]);
-  querytabdata(tab_data2, tabtopic[1]);
-  querytabdata(tab_data3, tabtopic[2]);
+  querytabdata(tab_data0,tabtopic[0]);
+  querytabdata(tab_data1, tabtopic[1]);
+  querytabdata(tab_data2, tabtopic[2]);
   setTimeout(function () {
 
     res.render('index', { 
       title: 'Blacklists HK', 
-      blacklist: tab_data1,
+      tab_data0: tab_data0,
+      tab_data1: tab_data1,
+      tab_data2: tab_data2,
       Categoryist_top : ['Product','Company','Personal'],
       Categoryist_col1 : ['Mobile Phones','Mp3 Players'],
       Categoryist_col2 : ['Restaurant','Travel agent'],
@@ -62,7 +64,7 @@ router.get('/', function(req, res, next) {
       tabtopic : ['mobile','restaurant','people']
     });
 
-  }, 100);
+  }, 300);
 });
 
 module.exports = router;

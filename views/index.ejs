@@ -149,10 +149,10 @@
                           <img src="images/<%= i+3 %>.jpg" onerror="this.onerror=null;this.src='images/Default.jpg';" alt=" " class="img-responsive"/>
                       </a>
                     </div>
-                    <h5><a href="single.html"><%= blacklist.name[i] %></a></h5>
+                    <h5><a href="single.html"><%= tab_data0.name[i] %></a></h5>
                     <div class="Comment_shelfItem">
                       <p></p>
-                      <button onclick="addcomment_btn('<%= blacklist.name[i] %>','<%= tabtopic[0] %>')" type="submit" class="w3ls-cart" data-toggle="modal" data-target="#addcomment">
+                      <button onclick="addcomment_btn('<%= tab_data0.name[i] %>','<%= tabtopic[0] %>','images/<%= i+3 %>.jpg')" type="submit" class="w3ls-cart" data-toggle="modal" data-target="#addcomment">
                       Add comment
                       </button>
                     </div>
@@ -160,46 +160,49 @@
                   <% } %>
                   <div class="clearfix"> </div>
                 </div>
-              </div>              
-              <div id="Company" role="tabpanel" aria-labelledby="Company-tab" class="tab-pane fade">
-                <div class="agile_ecommerce_tabs">
-                  <div class="col-md-4 agile_ecommerce_tab_left">
-                    <div class="hs-wrapper">
-                      <img src="images/9.jpg" alt=" " class="img-responsive"/>
-                      <div class="w3_hs_bottom">
-                        <ul>
-                          <li><a href="#" data-toggle="modal" data-target="#myModal1"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <h5><a href="single.html">Headphones</a></h5>
-                    <div class="Comment_shelfItem">
-                      <p></p>
-                      <form action="#" method="post">
-                        <button type="submit" class="w3ls-cart">Add comment</button>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="col-md-4 agile_ecommerce_tab_left">
-                    <div class="hs-wrapper">
-                      <img src="images/10.jpg" alt=" " class="img-responsive"/>
-                      <div class="w3_hs_bottom">
-                        <ul>
-                          <li><a href="#" data-toggle="modal" data-target="#myModal1"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <h5><a href="single.html">Audio Player</a></h5>
-                    <div class="Comment_shelfItem">
-                      <p></p>
-                      <form action="#" method="post">
-                        <button type="submit" class="w3ls-cart">Add to cart</button>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="clearfix">  </div>
-                </div>
               </div>
+              <div id="<%= tabtopic[1] %>" role="tabpanel" aria-labelledby="<%= tabtopic[1] %>-tab" class="tab-pane fade">
+                <div class="agile_ecommerce_tabs">
+                  <% for (var i = 0; i < 3; i++) { %>
+                  <div class="col-md-4 agile_ecommerce_tab_left">
+                    <div class="hs-wrapper">
+                      <a href="#" data-toggle="modal" data-target="#myModal">
+                          <img src="images/<%= i+6 %>.jpg" onerror="this.onerror=null;this.src='images/Default.jpg';" alt=" " class="img-responsive"/>
+                      </a>
+                    </div>
+                    <h5><a href="single.html"><%= tab_data1.name[i] %></a></h5>
+                    <div class="Comment_shelfItem">
+                      <p></p>
+                      <button onclick="addcomment_btn('<%= tab_data1.name[i] %>','<%= tabtopic[0] %>','images/<%= i+6 %>.jpg')" type="submit" class="w3ls-cart" data-toggle="modal" data-target="#addcomment">
+                      Add comment
+                      </button>
+                    </div>
+                  </div>
+                  <% } %>
+                  <div class="clearfix"> </div>
+                </div>
+              </div>   
+              <div id="<%= tabtopic[2] %>" role="tabpanel" aria-labelledby="<%= tabtopic[2] %>-tab" class="tab-pane fade">
+                <div class="agile_ecommerce_tabs">
+                  <% for (var i = 0; i < 3; i++) { %>
+                  <div class="col-md-4 agile_ecommerce_tab_left">
+                    <div class="hs-wrapper">
+                      <a href="#" data-toggle="modal" data-target="#myModal">
+                          <img src="images/<%= i+9 %>.jpg" onerror="this.onerror=null;this.src='images/Default.jpg';" alt=" " class="img-responsive"/>
+                      </a>
+                    </div>
+                    <h5><a href="single.html"><%= tab_data2.name[i] %></a></h5>
+                    <div class="Comment_shelfItem">
+                      <p></p>
+                      <button onclick="addcomment_btn('<%= tab_data2.name[i] %>','<%= tabtopic[2] %>','images/<%= i+9 %>.jpg')" type="submit" class="w3ls-cart" data-toggle="modal" data-target="#addcomment">
+                      Add comment
+                      </button>
+                    </div>
+                  </div>
+                  <% } %>
+                  <div class="clearfix"> </div>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -216,7 +219,7 @@
           </div>
           <section>
             <div class="modal-body">
-              <div class="col-md-5 modal_body_left"><img src="images/3.jpg" alt=" " class="img-responsive"/></div>
+              <div class="col-md-5 modal_body_left"><img id="addcom_img" src="images/3.jpg" alt=" " class="img-responsive"/></div>
               <div class="col-md-7 modal_body_right">
                 <h4>Black</h4>
                 <div class="Comment_shelfItem">
@@ -527,9 +530,13 @@
       </div>
     </div>
     <script type="text/javascript">
-      function addcomment_btn(name,category) {
+      function addcomment_btn(name,category,img) {
         document.getElementById("addcom_name").value = name;
         document.getElementById("addcom_cat").value = category;
+        document.getElementById("addcom_img").src = img;
+        document.getElementById("addcom_img").onerror = function() {
+          document.getElementById("addcom_img").src = "images/Default.jpg";
+        }
       }
     </script>
     <!-- //footer-->
