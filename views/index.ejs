@@ -210,6 +210,79 @@
       </div>
     </div>
     <!-- // display by category-->
+    <!-- top-black-->
+    <div class="top-black">
+      <div class="container">
+        <h3>Top Black</h3>
+        <div class="agileinfo_top_black_grids">
+            <!-- Loop 4 top rate item-->
+          <% for (var i = 0; i < 4; i++) { %>
+          <div class="col-md-3 agileinfo_top_black_grid">
+            <div class="agile_ecommerce_tab_left agileinfo_top_black_grid1">
+              <div class="hs-wrapper hs-wrapper1">
+                <a href="#" data-toggle="modal" data-target="#myModal">
+                    <img src="images/<%= i+9 %>.jpg" onerror="this.onerror=null;this.src='images/Default.jpg';" alt=" " class="img-responsive"/>
+                </a>
+              </div>
+              <p><%= top_data.category[i] %></p>
+              <h5><a href="#"><%= top_data.name[i] %></a></h5>
+              <div class="Comment_shelfItem">
+                <p></p>
+                  <button onclick="addcomment_btn('<%= top_data.name[i] %>','<%= top_data.category[i] %>','images/<%= i+9 %>.jpg')" type="submit" class="w3ls-cart" data-toggle="modal" data-target="#addcomment">
+                  Add comment
+                  </button>
+              </div>
+            </div>
+          </div>
+          <% } %>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+    </div>
+    <!-- //top-black-->
+    <!-- new-black-->
+    <div class="new-black">
+      <div class="container">
+        <h3>New Black</h3>
+        <div class="sliderfig">
+          <ul id="flexiselDemo1">
+            <% for (var i = 0; i < 5; i++) { %>
+            <a href="#" data-toggle="modal" data-target="#myModal">
+              <li><img src="images/tb<%= i+1 %>.jpg" alt=" " class="img-responsive"/><h5><%= newest_data.name[i] %></h5></li>
+            </a>
+            <% } %>
+          </ul>
+        </div>
+        <script type="text/javascript">
+          $(window).load(function() {
+          $("#flexiselDemo1").flexisel({
+          visibleItems: 4,
+          animationSpeed: 1000,
+          autoPlay: true,
+          autoPlaySpeed: 3000,
+          pauseOnHover: true,
+          enableResponsiveBreakpoints: true,
+          responsiveBreakpoints: {
+          portrait: {
+          changePoint:480,
+          visibleItems: 1
+          },
+          landscape: {
+          changePoint:640,
+          visibleItems:2
+          },
+          tablet: {
+          changePoint:768,
+          visibleItems: 3
+          }
+          }
+          });
+          });
+        </script>
+        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+      </div>
+    </div>
+    <!-- //new-black-->
     <!-- Add comment popup-->
     <div id="addcomment" tabindex="-1" role="dialog" aria-labelledby="addcomment" class="modal video-modal fade">
       <div role="document" class="modal-dialog">
@@ -221,7 +294,7 @@
             <div class="modal-body">
               <div class="col-md-5 modal_body_left"><img id="addcom_img" src="images/3.jpg" alt=" " class="img-responsive"/></div>
               <div class="col-md-7 modal_body_right">
-                <h4>Black</h4>
+                <h4>Add Comment</h4>
                 <div class="Comment_shelfItem">
                   <form action="blackcomment" method="post">
                     black name:<br>
@@ -328,137 +401,6 @@
       </div>
     </div>
     <!-- //model detail popup-->
-    <!-- top-black-->
-    <div class="top-black">
-      <div class="container">
-        <h3>Top Black</h3>
-        <div class="agileinfo_top_black_grids">
-          <div class="col-md-3 agileinfo_top_black_grid">
-            <div class="agile_ecommerce_tab_left agileinfo_top_black_grid1">
-              <div class="hs-wrapper hs-wrapper1">
-                <img src="images/3.jpg" alt=" " class="img-responsive"/>
-                <div class="w3_hs_bottom w3_hs_bottom_sub">
-                  <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal2"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5><a href="single.html">Laptops</a></h5>
-              <div class="Comment_shelfItem">
-                <p></p>
-                <form action="#" method="post">
-                  <button type="submit" class="w3ls-cart">Add Comment</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 agileinfo_top_black_grid">
-            <div class="agile_ecommerce_tab_left agileinfo_top_black_grid1">
-              <div class="hs-wrapper hs-wrapper1">
-                <img src="images/4.jpg" alt=" " class="img-responsive"/>
-                <div class="w3_hs_bottom w3_hs_bottom_sub">
-                  <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5><a href="single.html">Phone</a></h5>
-              <div class="Comment_shelfItem">
-                <p></p>
-                <form action="#" method="post">
-                  <button type="submit" class="w3ls-cart">Add Comment</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 agileinfo_top_black_grid">
-            <div class="agile_ecommerce_tab_left agileinfo_top_black_grid1">
-              <div class="hs-wrapper hs-wrapper1">
-                <img src="images/5.jpg" alt=" " class="img-responsive"/>
-                <div class="w3_hs_bottom w3_hs_bottom_sub">
-                  <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal5"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5><a href="single.html">Kids Toy</a></h5>
-              <div class="Comment_shelfItem">
-                <p></p>
-                <form action="#" method="post">
-                  <button type="submit" class="w3ls-cart">Add Comment</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 agileinfo_top_black_grid">
-            <div class="agile_ecommerce_tab_left agileinfo_top_black_grid1">
-              <div class="hs-wrapper hs-wrapper1">
-                <img src="images/6.jpg" alt=" " class="img-responsive"/>
-                <div class="w3_hs_bottom w3_hs_bottom_sub">
-                  <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal6"><span aria-hidden="true" class="glyphicon glyphicon-eye-open"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <h5><a href="single.html">Induction Stove</a></h5>
-              <div class="Comment_shelfItem">
-                <p></p>
-                <form action="#" method="post">
-                  <button type="submit" class="w3ls-cart">Add Comment</button>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="clearfix"> </div>
-        </div>
-      </div>
-    </div>
-    <!-- //top-black-->
-    <!-- new-black-->
-    <div class="new-black">
-      <div class="container">
-        <h3>New Black</h3>
-        <div class="sliderfig">
-          <ul id="flexiselDemo1">
-            <a href="#" data-toggle="modal" data-target="#myModal">
-              <li><img src="images/tb1.jpg" alt=" " class="img-responsive"/></li>
-            </a>
-            <li><img src="images/tb2.jpg" alt=" " class="img-responsive"/></li>
-            <li><img src="images/tb3.jpg" alt=" " class="img-responsive"/></li>
-            <li><img src="images/tb4.jpg" alt=" " class="img-responsive"/></li>
-            <li><img src="images/tb5.jpg" alt=" " class="img-responsive"/></li>
-          </ul>
-        </div>
-        <script type="text/javascript">
-          $(window).load(function() {
-          $("#flexiselDemo1").flexisel({
-          visibleItems: 4,
-          animationSpeed: 1000,
-          autoPlay: true,
-          autoPlaySpeed: 3000,
-          pauseOnHover: true,
-          enableResponsiveBreakpoints: true,
-          responsiveBreakpoints: {
-          portrait: {
-          changePoint:480,
-          visibleItems: 1
-          },
-          landscape: {
-          changePoint:640,
-          visibleItems:2
-          },
-          tablet: {
-          changePoint:768,
-          visibleItems: 3
-          }
-          }
-          });
-          });
-        </script>
-        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
-      </div>
-    </div>
-    <!-- //new-black-->
     <!-- newsletter-->
     <div class="newsletter">
       <div class="container">

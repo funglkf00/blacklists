@@ -19,6 +19,8 @@ var pool = new pg.Pool(config);
 
 
 // Query
+
+// Query tab item
 function querytabdata(data, tabtopic){
   pool.connect(function(err, client, done) {  
     if(err) {
@@ -40,16 +42,64 @@ function querytabdata(data, tabtopic){
   });
 };
 
+// Query top rate item
+function querytopratedata(data) {
+  pool.connect(function (err, client, done) {
+    if (err) {
+      return console.error('database connect error', err);
+    }
+    client.query("SELECT name, category, rate from blacklist order by rate DESC limit 4 ", function (err, result) {
+      done();// release connecetion
+      if (err) {
+        return console.error('query error', err);
+      }
+      //console.log(result);
+      for (var i in result.rows) {
+        data.name[i] = result.rows[i].name;
+        data.category[i] = result.rows[i].category;
+        //console.log(data.name[i]);
+      }
+      console.log(data);
+    });
+  });
+};
+
+// Query New item
+function querynewdata(data) {
+  pool.connect(function (err, client, done) {
+    if (err) {
+      return console.error('database connect error', err);
+    }
+    client.query("SELECT name, category, rate from blacklist order by date_added DESC limit 5", function (err, result) {
+      done();// release connecetion
+      if (err) {
+        return console.error('query error', err);
+      }
+      //console.log(result);
+      for (var i in result.rows) {
+        data.name[i] = result.rows[i].name;
+        data.category[i] = result.rows[i].category;
+        //console.log(data.name[i]);
+      }
+      console.log(data);
+    });
+  });
+};
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var tab_data0 = { name: ['default'], category: ['default'] };
   var tab_data1 = { name: ['default'], category: ['default'] };
   var tab_data2 = { name: ['default'], category: ['default'] };
+  var top_data = { name: ['default'], category: ['default'] };
+  var newest_data = { name: ['default'], category: ['default'] };
   var tabtopic = ['mobile', 'restaurant', 'people'];
   querytabdata(tab_data0,tabtopic[0]);
   querytabdata(tab_data1, tabtopic[1]);
   querytabdata(tab_data2, tabtopic[2]);
+  querytopratedata(top_data);
+  querynewdata(newest_data);
   setTimeout(function () {
 
     res.render('index', { 
@@ -57,6 +107,8 @@ router.get('/', function(req, res, next) {
       tab_data0: tab_data0,
       tab_data1: tab_data1,
       tab_data2: tab_data2,
+      top_data: top_data,
+      newest_data: newest_data,
       Categoryist_top : ['Product','Company','Personal'],
       Categoryist_col1 : ['Mobile Phones','Mp3 Players'],
       Categoryist_col2 : ['Restaurant','Travel agent'],
